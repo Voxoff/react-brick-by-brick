@@ -17,7 +17,7 @@ class AuthForm extends React.Component {
     })
   }
 
-  showSignup = event => {
+  showSignUp = event => {
     this.setState({
       login: false
     })
@@ -36,14 +36,24 @@ class AuthForm extends React.Component {
   }
 
   submitForm = event => {
-    // e.preventDefault
-    // this.state.login ?
-    //
+    event.preventDefault()
+    const { login, username, password, tc } = this.state
+
+    if ( !login && !tc ) {
+      alert("To create an account with us, you need to agree to our Terms and Conditions")
+    } else {
+      login ?
+      // this.props.submitLogin(username, password)
+      console.log("I'm logging in")
+      :
+      // this.props.submitSignUp(username, password)
+      console.log("I'm signing up")
+    }
   }
 
   render() {
     const { login, username, password, tc } = this.state
-    const { showLogin, showSignup, handleInputChange, toggleTnC, submitForm } = this
+    const { showLogin, showSignUp, handleInputChange, toggleTnC, submitForm } = this
 
     console.log("AuthForm state:", this.state)
 
@@ -59,7 +69,7 @@ class AuthForm extends React.Component {
           <Button.Or />
           <Button
             active={!login}
-            onClick={showSignup}
+            onClick={showSignUp}
           >
             Sign Up
           </Button>
