@@ -11,9 +11,15 @@ class AuthForm extends React.Component {
     tc: false,
   }
 
-  toggleLogin = event => {
+  showLogin = event => {
     this.setState({
-      login: !this.state.login
+      login: true
+    })
+  }
+
+  showSignUp = event => {
+    this.setState({
+      login: false
     })
   }
 
@@ -47,7 +53,7 @@ class AuthForm extends React.Component {
 
   render() {
     const { login, username, password, tc } = this.state
-    const { toggleLogin, handleInputChange, toggleTnC, submitForm } = this
+    const { showLogin, showSignUp, handleInputChange, toggleTnC, submitForm } = this
 
     console.log("AuthForm state:", this.state)
 
@@ -56,14 +62,14 @@ class AuthForm extends React.Component {
         <Button.Group>
           <Button
             active={login}
-            onClick={toggleLogin}
+            onClick={showLogin}
           >
             Login
           </Button>
           <Button.Or />
           <Button
             active={!login}
-            onClick={toggleLogin}
+            onClick={showSignUp}
           >
             Sign Up
           </Button>
